@@ -1,0 +1,17 @@
+# Usando a imagem oficial do MySQL como base
+FROM mysql:8.0
+
+# Manter a imagem atualizada
+RUN apt-get update && apt-get upgrade -y
+
+# Copiando o script de inicialização para o diretório correto
+COPY ./init.sql /docker-entrypoint-initdb.d/
+
+# Definindo variáveis de ambiente
+ENV MYSQL_ROOT_PASSWORD=GAud4mZby8F3SD6P
+ENV MYSQL_DATABASE=wordpress
+ENV MYSQL_USER=wordpress
+ENV MYSQL_PASSWORD=GAud4mZby8F3SD6P
+
+# Expondo a porta 3306
+EXPOSE 3306

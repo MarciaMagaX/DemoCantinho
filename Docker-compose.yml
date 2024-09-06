@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: GAud4mZby8F3SD6P
+      MYSQL_PASSWORD: GAud4mZby8F3SD6P
+      MYSQL_USER: wordpress
+      MYSQL_DATABASE: wordpress
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - wordpress_net
+
+  wordpress:
+    build:
+      context: .
+      dockerfile: Dockerfile-wordpress
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_PASSWORD: GAud4mZby8F3SD6P
+    ports:
+      - "8080:80"
+    networks:
+      - wordpress_net
+
+volumes:
+  db_data:
+
+networks:
+  wordpress_net:

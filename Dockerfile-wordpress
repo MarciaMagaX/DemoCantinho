@@ -1,0 +1,17 @@
+# Usando a imagem oficial do WordPress como base
+FROM wordpress:latest
+
+# Manter a imagem atualizada
+RUN apt-get update && apt-get upgrade -y
+
+# Definindo o diretório de trabalho
+WORKDIR /var/www/html
+
+# Copiando os arquivos do WordPress para o contêiner
+COPY . /var/www/html
+
+# Expondo a porta 80
+EXPOSE 80
+
+# Comando para iniciar o servidor web
+CMD ["apache2-foreground"]
