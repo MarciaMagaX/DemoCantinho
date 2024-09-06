@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 # Recurso para criar a instância AWS
-resource "aws_instance" "amb-prod15" {
+resource "aws_instance" "vm-demo" {
   ami           = "ami-0a0e5d9c7acc336f1"
   instance_type = "t2.micro"
   key_name      = "terraform2"
@@ -74,7 +74,7 @@ sudo -u ubuntu docker-compose up -d
 EOF
 
   tags = {
-    Name = "amb-prod15"
+    Name = "vm-demo"
   }
 }
 
